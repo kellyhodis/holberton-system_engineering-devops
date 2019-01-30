@@ -1,1 +1,0 @@
-This is a project for learning how to manipulate permissions in the shell. 
