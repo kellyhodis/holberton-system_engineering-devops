@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# display content of current directory in list format specially notated
+for line in *;
+    do
+        echo "$line" | cut -f2 -d '-'
+    done
