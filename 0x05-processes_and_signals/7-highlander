@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # displays "To infinity and beyond" indefinitely with sleep 2 between each iteration and "I am invincible!!!" when receiving a SIGTERM signal
-exit_signal() {
+text() {
     echo "I am invincible!!!"
-    trap - SIGTERM
 }
 
-trap exit_signal SIGTERM
+trap text SIGTERM
 
 while :
     do
