@@ -2,15 +2,5 @@
 # Configures a new Ubuntu machine with given requirements
 
 sudo apt-get -y update
-echo y | sudo apt-get install nginx
-echo Holberton School > /var/www/html/index.nginx-debian.html
-echo -e "server {" > /etc/nginx/sites-enabled/default
-echo -e "\tlisten 80 default_server;" >> /etc/nginx/sites-enabled/default
-echo -e "\tlisten [::]:80 default_server;" >> /etc/nginx/sites-enabled/default 
-echo -e "\troot /var/www/html;" >> /etc/nginx/sites-enabled/default
-echo -e "\tindex index.html index.htm index.nginx-debian.html;" >> /etc/nginx/sites-enabled/default
-echo -e "\tserver_name _;" >> /etc/nginx/sites-enabled/default
-echo -e "\tlocation / {" >> /etc/nginx/sites-enabled/default
-echo -e "\t\ttry_files $uri $uri/ =404;" >> /etc/nginx/sites-enabled/default
-echo -e "\t}" >> /etc/nginx/sites-enabled/default
-echo -e "}" >> /etc/nginx/sites-enabled/default
+sudo apt-get -y install nginx
+echo Holberton School > /usr/share/nginx/html/index.html
