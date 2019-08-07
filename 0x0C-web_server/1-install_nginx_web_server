@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Configures a new Ubuntu machine with given requirements
+
+echo Holberton School >> /var/www/html/index.html
