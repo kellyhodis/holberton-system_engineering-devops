@@ -8,6 +8,6 @@ echo 'Holberton School' > /var/www/html/index.nginx-debian.html
 new_string="}\n\n\trewrite ^\/redirect_me intranet.hbtn.io permanent;\n"
 sudo sed -i "0,/}/s//$new_string/" /etc/nginx/sites-enabled/default
 echo "Ceci n'est pas une page" > /var/www/html/404.html
-new_error_string="}\n\n\terror_page 404 /404.html;\n"
+new_error_string="}\n\n\terror_page 404 \/404.html;\n"
 sudo sed -i "0,/}/s//$new_error_string/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
