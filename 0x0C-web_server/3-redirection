@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Configures a new Ubuntu machine with given requirements
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+echo 'Holberton School' > /var/www/html/index.nginx-debian.html
+new_string="}\n\n\trewrite ^\/redirect_me intranet.hbtn.io permanent;\n"
+sudo sed -i "0,/}/s//$new_string/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
