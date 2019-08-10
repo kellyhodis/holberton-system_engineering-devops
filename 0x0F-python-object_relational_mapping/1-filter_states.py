@@ -12,7 +12,8 @@ def list_all_n(mysql_username="", mysql_password="", database_name=""):
                            passwd=mysql_password, db=database_name,
                            charset="utf8")
     cur = conn.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%'")
+    sql = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    cur.execute(sql)
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)
