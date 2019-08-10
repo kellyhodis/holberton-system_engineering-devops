@@ -14,7 +14,6 @@ def list_all_match(mysql_username="", mysql_password="", database_name="",
                            charset="utf8")
     cur = conn.cursor()
     sql = "SELECT * FROM states WHERE name LIKE '" + match + "'"
-    print(sql)
     cur.execute(sql)
     query_rows = cur.fetchall()
     for row in query_rows:
