@@ -7,7 +7,7 @@ import MySQLdb
 
 
 def list_all(mysql_username="", mysql_password="", database_name=""):
-    ''' This is a function that lists all states from a database. '''
+    ''' This is a function that lists all cities from a database. '''
     conn = MySQLdb.connect(host="localhost", port=3306, user=mysql_username,
                            passwd=mysql_password, db=database_name,
                            charset="utf8")
