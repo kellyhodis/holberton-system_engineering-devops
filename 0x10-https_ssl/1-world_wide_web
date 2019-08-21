@@ -2,19 +2,25 @@
 # Display information about subdomains
 
 print () {
-
+	echo The subdomain "$1" is a "$2" record and points to "$3"
 }
 
 dig_func () {
 	if [ $# -eq 1 ]; then
-		dig www."$1" | awk '/ANSWER SECTION:/{getline; print}'
-		dig lb-01."$1" | awk '/ANSWER SECTION:/{getline; print}'
-		dig web-01."$1" | awk '/ANSWER SECTION:/{getline; print}'
-		dig web-02."$1" | awk '/ANSWER SECTION:/{getline; print}'
+		destination=$(dig www."$1" | awk '/ANSWER SECTION:/{getline; print$5}')
+		print www A "$destination"
+		destination=$(dig lb-01."$1" | awk '/ANSWER SECTION:/{getline; print$5}')
+		print lb-01 A "$destination"
+		destination=$(dig web-01."$1" | awk '/ANSWER SECTION:/{getline; print$5}')
+		print web-01 A "$destination"
+		destination=$(dig web-02."$1" | awk '/ANSWER SECTION:/{getline; print$5}')
+		print web-02 A "$destination"
 	elif [ $# -gt 1 ]; then
-		dig "$2"."$1" | awk '/ANSWER SECTION:/{getline; print}'
+		subdomain=$(dig "$2"."$1" | awk '/ANSWER SECTION:/{getline; print$1}' | cut -d '.' -f 1)
+		record_type=$(dig "$2"."$1" | awk '/ANSWER SECTION:/{getline; print$4}')
+		destination=$(dig "$2"."$1" | awk '/ANSWER SECTION:/{getline; print$5}')
+		print "$subdomain" "$record_type" "$destination"
 	fi
-# echo output in appropriate format
 }
 
 if [ $# -eq 1 ]; then
@@ -22,8 +28,3 @@ if [ $# -eq 1 ]; then
 else
 	dig_func "$1" "$2"
 fi
-
-
-# info=$(dig $1 | awk '/ANSWER SECTION:/{getline; print}')
-# echo The subdomain $(echo $info | cut -d '.' -f 1) is a $(echo $info | ) record and points to $()
-
