@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 # Display information about subdomains
 
-function_name () {
+print () {
+
+}
+
+dig_func () {
 	if [ $# -eq 1 ]; then
-		dig www."$1"
-		dig lb-01."$1"
-		dig web-01."$1"
-		dig web-02."$1"
+		dig www."$1" | awk '/ANSWER SECTION:/{getline; print}'
+		dig lb-01."$1" | awk '/ANSWER SECTION:/{getline; print}'
+		dig web-01."$1" | awk '/ANSWER SECTION:/{getline; print}'
+		dig web-02."$1" | awk '/ANSWER SECTION:/{getline; print}'
 	elif [ $# -gt 1 ]; then
-		dig "$2"."$1"
+		dig "$2"."$1" | awk '/ANSWER SECTION:/{getline; print}'
 	fi
 # echo output in appropriate format
 }
 
-function_name "$1" "$2"
-
+if [ $# -eq 1 ]; then
+	dig_func "$1"
+else
+	dig_func "$1" "$2"
+fi
 
 
 # info=$(dig $1 | awk '/ANSWER SECTION:/{getline; print}')
