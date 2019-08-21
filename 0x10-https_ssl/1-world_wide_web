@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Display information about subdomains
+
+function_name () {
+	if [ $# -eq 1 ]; then
+		dig www."$1"
+		dig lb-01."$1"
+		dig web-01."$1"
+		dig web-02."$1"
+	elif [ $# -gt 1 ]; then
+		dig "$2"."$1"
+	fi
+# echo output in appropriate format
+}
+
+function_name "$1" "$2"
+
+
+
+# info=$(dig $1 | awk '/ANSWER SECTION:/{getline; print}')
+# echo The subdomain $(echo $info | cut -d '.' -f 1) is a $(echo $info | ) record and points to $()
+
