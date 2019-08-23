@@ -1,3 +1,4 @@
-ufw allow ssh/tcp
-ufw allow https/tcp
-ufw allow http/tcp
+sudo ufw allow ssh/tcp
+sudo ufw allow https/tcp
+sudo ufw allow http/tcp
+sudo ufw enable
